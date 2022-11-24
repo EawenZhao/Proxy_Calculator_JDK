@@ -3,7 +3,6 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.GregorianCalendar;
-import java.util.Scanner;
 
 public class CalcUnitProxy {
     private int counter = 0;
@@ -25,15 +24,13 @@ public class CalcUnitProxy {
                         new InvocationHandler() {
                             @Override
                             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                                String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
-                                if (counter == 1){
-                                    writer.printf("[%s] 计算结果\n", currTime);
-                                    counter = 0;
+                                if (method.getName() == "calc"){
+                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                    writer.printf("[%s] 做了加法运算！\n", currTime);
                                 }else {
-                                    writer.printf("[%s] 判断操作符%s是否符合当前计算单元：\n", currTime, "+");
-                                    counter++;
+                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                    writer.printf("[%s] 判断这个运算符+\n",currTime);
                                 }
-
                                 return method.invoke(addUnit,args);
                             }
                         }
@@ -46,15 +43,13 @@ public class CalcUnitProxy {
                         new InvocationHandler() {
                             @Override
                             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                                String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
-                                if (counter == 1){
-                                    writer.printf("[%s] 计算结果\n", currTime);
-                                    counter = 0;
+                                if (method.getName() == "calc"){
+                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                    writer.printf("[%s] 做了减法运算！\n", currTime);
                                 }else {
-                                    writer.printf("[%s] 判断操作符%s是否符合当前计算单元：\n", currTime, "-");
-                                    counter++;
+                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                    writer.printf("[%s] 判断这个运算符-\n",currTime);
                                 }
-
                                 return method.invoke(subUnit,args);
                             }
                         }
@@ -67,13 +62,12 @@ public class CalcUnitProxy {
                         new InvocationHandler() {
                             @Override
                             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                                String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
-                                if (counter == 1){
-                                    writer.printf("[%s] 计算结果\n", currTime);
-                                    counter = 0;
+                                if (method.getName() == "calc"){
+                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                    writer.printf("[%s] 做了乘法运算！\n", currTime);
                                 }else {
-                                    writer.printf("[%s] 判断操作符%s是否符合当前计算单元：\n", currTime, "*");
-                                    counter++;
+                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                    writer.printf("[%s] 判断这个运算符*\n",currTime);
                                 }
 
                                 return method.invoke(mulUnit,args);
@@ -88,13 +82,12 @@ public class CalcUnitProxy {
                         new InvocationHandler() {
                             @Override
                             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                                String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
-                                if (counter == 1){
-                                    writer.printf("[%s] 计算结果\n", currTime);
-                                    counter = 0;
+                                if (method.getName() == "calc"){
+                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                    writer.printf("[%s] 做了除法运算！\n", currTime);
                                 }else {
-                                    writer.printf("[%s] 判断操作符%s是否符合当前计算单元：\n", currTime, "/");
-                                    counter++;
+                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                    writer.printf("[%s] 判断这个运算符/\n",currTime);
                                 }
 
                                 return method.invoke(divUnit, args);
