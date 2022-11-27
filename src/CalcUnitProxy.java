@@ -5,7 +5,6 @@ import java.lang.reflect.Proxy;
 import java.util.GregorianCalendar;
 
 public class CalcUnitProxy {
-    private int counter = 0;
     private PrintWriter writer;
     private CalcUnit calcUnit;
 
@@ -18,55 +17,50 @@ public class CalcUnitProxy {
     public CalcUnit getProxyObject() {
         switch (this.calcUnit.toString()){
             case "+":
-                CalcUnit calcUnit = (CalcUnit) Proxy.newProxyInstance(
+                return (CalcUnit) Proxy.newProxyInstance(
                         addUnit.getClass().getClassLoader(),
                         addUnit.getClass().getInterfaces(),
                         new InvocationHandler() {
                             @Override
                             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                                if (method.getName() == "calc"){
-                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                if (method.getName().equals("calc")){
                                     writer.printf("[%s] 做了加法运算！\n", currTime);
                                 }else {
-                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
                                     writer.printf("[%s] 判断这个运算符+\n",currTime);
                                 }
                                 return method.invoke(addUnit,args);
                             }
                         }
                 );
-                return calcUnit;
             case "-":
-                CalcUnit calcUnit2 = (CalcUnit) Proxy.newProxyInstance(
+                return (CalcUnit) Proxy.newProxyInstance(
                         subUnit.getClass().getClassLoader(),
                         subUnit.getClass().getInterfaces(),
                         new InvocationHandler() {
                             @Override
                             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                                if (method.getName() == "calc"){
-                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                if (method.getName().equals("calc")){
                                     writer.printf("[%s] 做了减法运算！\n", currTime);
                                 }else {
-                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
                                     writer.printf("[%s] 判断这个运算符-\n",currTime);
                                 }
                                 return method.invoke(subUnit,args);
                             }
                         }
                 );
-                return calcUnit2;
             case "*":
-                CalcUnit calcUnit3 = (CalcUnit) Proxy.newProxyInstance(
+                return (CalcUnit) Proxy.newProxyInstance(
                         mulUnit.getClass().getClassLoader(),
                         mulUnit.getClass().getInterfaces(),
                         new InvocationHandler() {
                             @Override
                             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                                if (method.getName() == "calc"){
-                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                if (method.getName().equals("calc")){
                                     writer.printf("[%s] 做了乘法运算！\n", currTime);
                                 }else {
-                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
                                     writer.printf("[%s] 判断这个运算符*\n",currTime);
                                 }
 
@@ -74,19 +68,17 @@ public class CalcUnitProxy {
                             }
                         }
                 );
-                return calcUnit3;
             case "/":
-                CalcUnit calcUnit4 = (CalcUnit) Proxy.newProxyInstance(
+                return (CalcUnit) Proxy.newProxyInstance(
                         divUnit.getClass().getClassLoader(),
                         divUnit.getClass().getInterfaces(),
                         new InvocationHandler() {
                             @Override
                             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                                if (method.getName() == "calc"){
-                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
+                                if (method.getName().equals("calc")){
                                     writer.printf("[%s] 做了除法运算！\n", currTime);
                                 }else {
-                                    String currTime = String.valueOf(GregorianCalendar.getInstance().getTime());
                                     writer.printf("[%s] 判断这个运算符/\n",currTime);
                                 }
 
@@ -94,7 +86,6 @@ public class CalcUnitProxy {
                             }
                         }
                 );
-                return calcUnit4;
         }
 
         return null;

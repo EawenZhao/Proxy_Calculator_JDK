@@ -12,7 +12,7 @@ public class Main {
 
         PrintWriter pw = null;
         try {
-            pw = new PrintWriter(new File("/Users/eawenc./Desktop/log.txt"));
+            pw = new PrintWriter(new File("D://log.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
